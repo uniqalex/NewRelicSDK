@@ -1,0 +1,12 @@
+﻿[
+    {
+        "name" : "FunctionalTest1",
+        "host": 2.0,
+		"port": 1433
+    },
+    {
+        "name" : "FunctionalTest2",
+        "host": 3.0,
+		"port": 1433
+    }
+]
