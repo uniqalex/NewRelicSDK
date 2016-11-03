@@ -1,0 +1,14 @@
+﻿{    
+    "agents": [
+        {
+            "name": "FunctionalTest1",
+            "host": "localhost",
+            "port": 1433
+        },
+        {
+            "name": "FunctionalTest2",
+            "host": "localhost",
+            "port": 1433
+        }
+    ]
+} 
