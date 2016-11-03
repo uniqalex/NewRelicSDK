@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NewRelic.Platform.Sdk;
+using NewRelic.Platform.Sdk.Processors;
 
 namespace uniqPlugin
 {
@@ -37,6 +38,10 @@ namespace uniqPlugin
         private string user;
         private string password;
 
+        //Processors
+        private IProcessor connectionsProcessor = new EpochProcessor();
+
+
 
         public override string Guid
         {
@@ -61,8 +66,10 @@ namespace uniqPlugin
         }
 
         public override void PollCycle()
-        { 
-            
+        {
+            int conn = 1;
+            ReportMetric("Connections/Count", "connections", conn);
+            ReportMetric("Connections/Rate", "connections/sec", connectionsProcessor.Process(conn));
         }
     }
 
@@ -73,7 +80,8 @@ namespace uniqPlugin
         {
             string name = (string)properties["name"];
             string host = (string)properties["host"];
-            int port = (int)properties["port"];
+            //int port = (int)properties["port"];
+            int port = Convert.ToInt32(properties["port"]);
 
             return new UniqAgent(name, host, port);
         }
